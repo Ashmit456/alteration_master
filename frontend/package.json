@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "swiper": "^11.2.5",
     "web-vitals": "^2.1.4"
+    "yocto-queue": "^1.2.0"
   },
   "scripts": {
     "start": "HOST=0.0.0.0 react-scripts start",
