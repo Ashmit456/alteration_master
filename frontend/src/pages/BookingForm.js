@@ -198,7 +198,7 @@ const BookingForm = () => {
           <Grid item xs={12}>
             <ReCAPTCHA
               ref={recaptchaRef}
-              sitekey="6Lc38e4qAAAAAAGR2PL5l_3haYSZsSxOZ-Yw5qV2" // Replace with your actual site key
+              sitekey="6LcRXvYqAAAAAFGgecpatCXtG5dG_ATVg8cIpNv0" // Replace with your actual site key
             />
           </Grid>
         </Grid>
