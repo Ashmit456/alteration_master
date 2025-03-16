@@ -69,7 +69,7 @@ const BookingForm = () => {
     }
 
     try {
-      const { data } = await axios.post('/api/bookings', payload, {
+      const { data } = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/bookings`, payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
