@@ -13,6 +13,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Ensure the uploads directory exists; if not, create it
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+  console.log(`Created uploads directory at ${uploadsDir}`);
+}
+
 // Trust proxy
 app.set('trust proxy', 1);
 
@@ -29,15 +36,15 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Multer for file uploads
+// Multer for file uploads using the verified uploads directory
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname),
 });
 const upload = multer({ storage });
 
 // Serve static files from uploads folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDir));
 
 // Nodemailer Transporter (configured for Gmail)
 const transporter = nodemailer.createTransport({
